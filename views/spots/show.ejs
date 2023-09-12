@@ -1,33 +1,38 @@
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Date</th>
-      <th>Review</th>
-      <th>Rating</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% let total = 0 %>
-    <% movie.reviews.forEach(function(r) { %>
-      <% total += r.rating %>
-      <tr>
-        <td class="review-user"><img alt="avatar" src="<%= r.userAvatar %>" referrerpolicy="no-referrer" ><%= r.userName %></td>
-        <td><%= r.createdAt.toLocaleDateString() %></td>
-        <td><%= r.content %></td>
-        <td><%= r.rating %></td>
-        <td>
-         <% if (user?._id.equals(r.user)) { %>
-          <form action="/reviews/<%= r._id %>?_method=DELETE" method="POST">
-            <button type="submit">X</button>
-            </form>
-            <% } %>
-      </tr>
-    <% }); %>
-    <tr>
-      <td colspan="3"></td>
-      <td><strong><%= (total / movie.reviews.length).toFixed(1) %></strong></td>
-    </tr>
-  </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fishing Spot Details</title>
+
+  <!-- Include the link to your CSS file here -->
+  <link rel="stylesheet" type="text/css" href="/stylesheets/styleDetail.css">
+</head>
+<body>
+  <!-- fishing-spot-details.ejs -->
+  <h1>Fishing Spot Details</h1>
+
+  <div class="spot-details">`
+    <div class="spot-info">
+      <h2>Name:</h2>
+      <p><%= fishingSpot.name %></p>
+    </div>
+    <div class="spot-info">
+      <h2>Location:</h2>
+      <p><%= fishingSpot.location %></p>
+    </div>
+    <div class="spot-info">
+      <h2>Description:</h2>
+      <p><%= fishingSpot.description %></p>
+    </div>
+    <!-- Add more details here as needed -->
+  </div>
+
+  <!-- Link to go back to the list of fishing spots -->
+  <a href="/fishing-spots">Back to All Fishing Spots</a>
+
+  <!-- Link to edit or delete this fishing spot -->
+  <a href="/fishing-spots/<%= fishingSpot._id %>/edit">Edit Fishing Spot</a>
+  <a href="/fishing-spots/<%= fishingSpot._id %>/delete">Delete Fishing Spot</a>
+</body>
+</html>

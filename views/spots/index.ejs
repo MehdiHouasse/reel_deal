@@ -1,0 +1,17 @@
+  <%- include('../partials/header') %>
+    <h1><%= title %></h1>
+
+    <ul>
+        <% spots.forEach(spot => { %>
+            <li>
+                <strong>Name:</strong> <%= spot.name %><br>
+                <strong>Location:</strong> <%= spot.location %><br>
+
+                <a href="/spots/<%= spot._id %>">View Details</a>
+            </li>
+        <% }); %>
+    </ul>
+
+    <!-- Add any other page content or navigation here -->
+</body>
+</html>

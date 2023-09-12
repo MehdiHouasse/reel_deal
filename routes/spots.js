@@ -1,14 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const spotsController = require('../controllers/spots');
+const Spot = require('../models/spot'); // Import your Spot model
 
-const spotsCtrl = require('../controllers/spots');
-// Require the auth middleware
-const ensureLoggedIn = require('../config/ensureLoggedIn');
+// Route for listing all spots
+router.get('/', spotsController.listSpots);
 
-router.get('/', spotsCtrl.index);
-// Use ensureLoggedIn middleware to protect routes
-router.get('/new', ensureLoggedIn, spotsCtrl.new);
-router.get('/:id', spotsCtrl.show);
-router.post('/', ensureLoggedIn, spotsCtrl.create);
+// Route for displaying the form to add a new spot
+router.get('/new', spotsController.showAddSpotForm);
+
+// Route for displaying spot details
+router.get('/:id', spotsController.showSpotDetails);
+
+// Route for handling the submission of a new spot
+router.post('/', spotsController.addSpot);
+
 
 module.exports = router;

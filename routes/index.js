@@ -1,10 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
+const Spot = require('../models/spot');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'ReelDeal' });
+router.get('/', async function(req, res, next) {
+  const spots = await Spot.find();
+  console.log(spots);
+  res.render('index', { title: 'ReelDeal', spots });
 });
 
 
@@ -20,7 +23,7 @@ router.get('/auth/google', passport.authenticate(
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect: '/',
+    successRedirect: '/spots',
     failureRedirect: '/'
   }
 ));

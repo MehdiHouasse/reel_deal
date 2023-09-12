@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const fishingSpotSchema = new mongoose.Schema({
+const spotSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -9,12 +9,12 @@ const fishingSpotSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  availableFishSpecies: {
-    type: [String], // Assuming available fish species are stored as an array of strings
-    required: true,
-  },
+  fishSpecies: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Fish",
+  }],
 });
 
-const FishingSpot = mongoose.model('FishingSpot', fishingSpotSchema);
+const Spot = mongoose.model('Spot', spotSchema);
 
-module.exports = FishingSpot;
+module.exports = Spot;

@@ -1,72 +1,66 @@
 const Spot = require('../models/spot');
-//const Performer = require('../models/performer');
+//display all spots
+async function listSpots(req, res) {
 
-module.exports = {
-  index,
-  show,
-  new: newSpot,
-  create
-};
-
-async function index(req, res) {
-  const spots = await Spot.find({});
-  res.render('spots/index', { title: 'All Spots', spots });
+  try {
+    const spots = await Spot.find();
+    console.log(spots);
+    res.render('spots/index', { spots, title: "All spots" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error' });
+  }
 }
 
-async function show(req, res) {
-  // Populate the cast array with performer docs instead of ObjectIds
-  const spot = await Spot.findById(req.params.id).populate('cast');
-  // Mongoose query builder approach to retrieve performers not the movie:
-  // Performer.find({}).where('_id').nin(movie.cast)
-  // The native MongoDB approach uses a query object to find
-  // performer docs whose _ids are not in the movie.cast array like this:
-  const performers = await Performer.find({ _id: { $nin: movie.cast } }).sort('name');
-  res.render('movies/show', { title: 'Movie Detail', movie, performers });
+// Controller function for displaying the form to add a new spot
+function showAddSpotForm(req, res) {
+
+  res.render('spots/new', {title: "ADD spot"});
 }
 
-function newSpot(req, res) {
-  // Initialize errorMsg as an empty string
-  let errorMsg = '';
-
-  // Check if the form has been submitted
-  if (req.method === 'POST') {
-    // Retrieve form data from the request body
+// Controller function for handling the submission of a new spot
+async function addSpot(req, res) {
+  try {
     const { name, location, fishSpecies } = req.body;
 
-    try {
-      // Example: Create a new fishing spot and handle success or errors
-      const newSpot = createFishingSpot(name, location, fishSpecies);
+    // Create a new Spot
+    const newSpot = new Spot({
+      name,
+      location,
+      fishSpecies,
+    });
 
-      // Assuming createFishingSpot returns the newly created spot
-      // If successful, you can redirect to a success page or list of spots
-      // Example: res.redirect('/spots'); // Redirect to the list of spots
-      res.redirect('/?success=1');
-    } catch (error) {
-      // If there's an error during spot creation, set errorMsg
-      errorMsg = 'Error creating the fishing spot. Please try again.';
-    }
+    // Save the new spot to the database
+    await newSpot.save();
+
+    // Redirect to the list of spots after successfully adding a new spot
+    res.redirect('/spots');
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error' });
   }
-
-  // Render the 'new.ejs' template with the title and errorMsg
-  res.render('spots/new', { title: 'Add Spot', errorMsg });
 }
 
-
-async function create(req, res) {
-  // convert nowShowing's checkbox of nothing or "on" to boolean
-  req.body.nowShowing = !!req.body.nowShowing;
-  // Remove empty properties so that defaults will be applied
-  for (let key in req.body) {
-    if (req.body[key] === '') delete req.body[key];
-  }
+// Controller function for displaying spot details
+async function showSpotDetails(req, res) {
   try {
-    // Update this line because now we need the _id of the new movie
-    const spot = await Spot.create(req.body);
-    // Redirect to the new movie's show functionality
-    res.redirect(`/spots/${spot._id}`);
-  } catch (err) {
-    // Typically some sort of validation error
-    console.log(err);
-    res.render('spots/new', { errorMsg: err.message });
+    const spotId = req.params.id;
+    const spot = await Spot.findById(spotId);
+
+    if (!spot) {
+      return res.status(404).render('not-found');
+    }
+
+    res.render('spots/show', { spot });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+module.exports = {
+  listSpots,
+  showAddSpotForm,
+  addSpot,
+  showSpotDetails,
+};
