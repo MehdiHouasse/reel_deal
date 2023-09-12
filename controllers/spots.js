@@ -1,4 +1,5 @@
 const Spot = require('../models/spot');
+const FishingSpot = require('../models/fish');
 //display all spots
 async function listSpots(req, res) {
 

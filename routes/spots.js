@@ -3,6 +3,7 @@ const router = express.Router();
 const spotsController = require('../controllers/spots');
 const Spot = require('../models/spot'); // Import your Spot model
 
+
 // Route for listing all spots
 router.get('/', spotsController.listSpots);
 

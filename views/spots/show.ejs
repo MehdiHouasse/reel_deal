@@ -12,27 +12,27 @@
   <!-- fishing-spot-details.ejs -->
   <h1>Fishing Spot Details</h1>
 
-  <div class="spot-details">`
+  <div class="spot-details">
     <div class="spot-info">
       <h2>Name:</h2>
-      <p><%= fishingSpot.name %></p>
+      <p><%= spot.name %></p>
     </div>
     <div class="spot-info">
       <h2>Location:</h2>
-      <p><%= fishingSpot.location %></p>
+      <p><%= spot.location %></p>
     </div>
     <div class="spot-info">
       <h2>Description:</h2>
-      <p><%= fishingSpot.description %></p>
+      <p><%= spot.description %></p>
     </div>
     <!-- Add more details here as needed -->
   </div>
 
   <!-- Link to go back to the list of fishing spots -->
-  <a href="/fishing-spots">Back to All Fishing Spots</a>
-
-  <!-- Link to edit or delete this fishing spot -->
-  <a href="/fishing-spots/<%= fishingSpot._id %>/edit">Edit Fishing Spot</a>
-  <a href="/fishing-spots/<%= fishingSpot._id %>/delete">Delete Fishing Spot</a>
+    <div class="card-buttons">
+      <a href="/spots" class="card-button">Back to All Fishing Spots</a>
+      <a href="/fishing-spots/<%= spot._id %>/edit" class="card-button">Edit Fishing Spot</a>
+      <a href="/fishing-spots/<%= spot._id %>/delete" class="card-button">Delete Fishing Spot</a>
+    </div>
 </body>
 </html>
