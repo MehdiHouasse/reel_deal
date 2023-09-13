@@ -1,7 +1,5 @@
 <%- include('../partials/header') %>
-    <title>Add a Fishing Spot</title>
-</head>
-<body>
+
     <h1>Add a New Fishing Spot</h1>
 
     <form action="/spots" method="POST">
@@ -12,12 +10,11 @@
         <input type="text" id="location" name="location" required>
 
         <label for="fishSpecies">Available Fish Species:</label>
-        <input type="text" id="fishSpecies" name="fishSpecies" required>
+
 
         <button type="submit">Add Spot</button>
     </form>
 
     <a href="/">Back to Fishing Spots</a>
-
 
 <%- include('../partials/footer') %>

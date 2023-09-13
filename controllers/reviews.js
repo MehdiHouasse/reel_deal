@@ -1,12 +1,12 @@
 async function create(req, res) {
   const spot = await Spot.findById(req.params.id);
 
-  // Add the user-centric info to req.body (the new review)
+  // Add the user-centric info to req.body
   req.body.user = req.user._id;
   req.body.userName = req.user.name;
   req.body.userAvatar = req.user.avatar;
 
-  // We can push (or unshift) subdocs into Mongoose arrays
+
   spot.reviews.push(req.body);
   try {
     // Save any changes made to the movie doc
@@ -22,14 +22,22 @@ module.exports = {
 };
 
 async function deleteReview(req, res) {
-  // Note the cool "dot" syntax to query on the property of a subdoc
-  const spot = await Spot.findOne({ 'reviews._id': req.params.id, 'reviews.user': req.user._id });
-  // Rogue user!
-  if (!spot) return res.redirect('/spots');
-  // Remove the review using the remove method available on Mongoose arrays
-  spot.reviews.remove(req.params.id);
-  // Save the updated movie doc
-  await spot.save();
-  // Redirect back to the movie's show view
-  res.redirect(`/spots/${spot._id}`);
+  try {
+    const spot = await Spot.findOne({ 'reviews._id': req.params.id, 'reviews.user': req.user._id });
+    if (!spot) {
+      // Unauthorized access or review not found
+      return res.status(403).redirect('/spots');
+    }
+
+    // Remove the review
+    spot.reviews.remove(req.params.id);
+
+    await spot.save();
+    // Redirect back to the fishing spot's show view
+    return res.redirect(`/spots/${spot._id}`);
+  } catch (error) {
+    console.error(error);
+    // Handle other errors
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 }

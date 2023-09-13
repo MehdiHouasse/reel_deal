@@ -1,12 +1,12 @@
 const Spot = require('../models/spot');
 const FishingSpot = require('../models/fish');
-//display all spots
-async function listSpots(req, res) {
 
+// Controller function for displaying a list of all spots
+async function listSpots(req, res) {
   try {
     const spots = await Spot.find();
     console.log(spots);
-    res.render('spots/index', { spots, title: "All spots" });
+    res.render('spots/index', { spots, title: 'All spots' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error' });
@@ -15,8 +15,7 @@ async function listSpots(req, res) {
 
 // Controller function for displaying the form to add a new spot
 function showAddSpotForm(req, res) {
-
-  res.render('spots/new', {title: "ADD spot"});
+  res.render('spots/new', { title: 'ADD spot' });
 }
 
 // Controller function for handling the submission of a new spot
@@ -34,7 +33,7 @@ async function addSpot(req, res) {
     // Save the new spot to the database
     await newSpot.save();
 
-    // Redirect to the list of spots after successfully adding a new spot
+    // Redirect
     res.redirect('/spots');
   } catch (error) {
     console.error(error);
@@ -46,13 +45,15 @@ async function addSpot(req, res) {
 async function showSpotDetails(req, res) {
   try {
     const spotId = req.params.id;
-    const spot = await Spot.findById(spotId);
+
+    // Find the spot by ID and populate the fishSpecies field
+    const spot = await Spot.findById(spotId).populate('fishSpecies');
 
     if (!spot) {
       return res.status(404).render('not-found');
     }
 
-    res.render('spots/show', { spot });
+    res.render('spots/show', { spot: spot });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

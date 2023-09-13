@@ -4,29 +4,23 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   userId: {
     type: String,
-    //required: true,
-    unique: true, // Ensures that userId is unique
+    unique: true,
   },
   username: {
     type: String,
-    //required: true,
-    unique: true, // Ensures that username is unique
+    unique: true,
   },
   email: {
     type: String,
-    //required: true,
-    unique: true, // Ensures that email is unique
+    unique: true,
   },
   password: {
     type: String,
-   // required: true,
   },
-  googleId: String, // Google ID, optional if you support Google login
-  avatar: String, // URL to user's avatar image
+  googleId: String,
+  avatar: String,
 }, {
   timestamps: true,
 });
 
-const user = mongoose.model('user', userSchema);
-
-module.exports = user;
+module.exports = mongoose.model('User', userSchema);

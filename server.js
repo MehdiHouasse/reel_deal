@@ -13,7 +13,7 @@ require('dotenv').config();
 require('./config/database');
 require('./config/passport');
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var  reviewsRouter = require('./routes/reviews');
 const spotsRouter = require('./routes/spots');
 
 //const reviewsRouter = require('./routes/reviews');
@@ -48,7 +48,7 @@ app.use(methodOverride('_method'));
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/reviews', reviewsRouter);
 app.use('/spots', spotsRouter);
 
 

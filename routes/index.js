@@ -4,10 +4,8 @@ const passport = require('passport');
 const Spot = require('../models/spot');
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-  const spots = await Spot.find();
-  console.log(spots);
-  res.render('index', { title: 'ReelDeal', spots });
+router.get('/', function(req, res, next) {
+  res.render('home', { title: 'ReelDeal'});
 });
 
 
