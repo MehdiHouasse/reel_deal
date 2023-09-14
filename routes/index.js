@@ -3,7 +3,7 @@ var router = express.Router();
 const passport = require('passport');
 const Spot = require('../models/spot');
 
-/* GET home page. */
+//GET home page
 router.get('/', function(req, res, next) {
   res.render('home', { title: 'ReelDeal'});
 });
