@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fishing Spot Details</title>
-
-  <!-- Include the link to your CSS file here -->
-  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
-</head>
-<body>
+  <%- include('../partials/header') %>
   <!-- fishing-spot-details.ejs -->
   <h1>Fishing Spot Details</h1>
 
   <div class="spot-details">
     <div class="spot-info">
       <h2>Name:</h2>
-      <p><%= spot.name %></p>
+      <p><%= spot.name + " (" +  spot.user.name + ") " %></p>
     </div>
     <div class="spot-info">
       <h2>Location:</h2>
@@ -29,38 +19,70 @@
   </div>
 
   <!-- Link to go back to the list of fishing spots -->
-  <div class="card-buttons">
-    <a href="/spots" class="card-button">Back to All Fishing Spots</a>
-    <a href="/fishing-spots/<%= spot._id %>/edit" class="card-button">Edit Fishing Spot</a>
-    <a href="/fishing-spots/<%= spot._id %>/delete" class="card-button">Delete Fishing Spot</a>
+    <div class="card-buttons">
+    <button href="/spots" class="card-button">Back to All Fishing Spots</button>
+    <button href="/spots/<%= spot._id %>/edit" class="card-button">Edit</button>
+
+   <form action="/spots/<%= spot._id %>?_method=DELETE" method="POST">
+   <button type="submit">Delete</button>
+   </form>
+
   </div>
 
-  <!-- See Reviews -->
-  <h2>Reviews</h2>
-  <ul>
-    <% spot.reviews.forEach(function(review) { %>
-      <li>
-        <p><strong>Rating:</strong> <%= review.rating %></p>
-        <p><strong>Content:</strong> <%= review.content %></p>
-        <!-- Add user information here if needed -->
-        <!-- Delete Review Button -->
-        <form action="/spots/<%= spot._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-          <button type="submit">Delete Review</button>
-        </form>
-      </li>
-    <% }); %>
-  </ul>
+<br><br>
+<h2>Reviews</h2>
 
-  <!-- Add Review Form -->
-  <h2>Add a Review</h2>
-  <form action="/spots/<%= spot._id %>/reviews" method="POST">
-    <label for="rating">Rating:</label>
-    <input type="number" id="rating" name="rating" required>
+<!-- Add Review Form -->
+<form id="add-review-form" method="POST" action="/spots/<%= spot._id %>/reviews">
+  <label>Review:</label>
+  <textarea name="content"></textarea>
+  <label>Rating:</label>
+  <select name="rating">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5" selected>5</option>
+  </select>
+  <input type="submit" value="Add Review">
+</form>
 
-    <label for="content">Review Content:</label>
-    <textarea id="content" name="content" required></textarea>
-
-    <button type="submit">Submit Review</button>
-  </form>
-</body>
-</html>
+<% if (spot.reviews.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Review</th>
+        <th>Rating</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let total = 0 %>
+      <% spot.reviews.forEach(function(review) { %>
+        <% total += review.rating %>
+        <tr>
+          <td class="review-user"><img alt="avatar" src="<%= review.userAvatar %>" referrerpolicy="no-referrer"><%= review.userName %></td>
+          <td><%= review.createdAt.toLocaleDateString() %></td>
+          <td><%= review.content %></td>
+          <td><%= review.rating %></td>
+          <td>
+            <% if (user?._id.equals(review.user)) { %>
+              <form action="/spots/<%= spot._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                <button type="submit">X</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }); %>
+      <tr>
+        <td colspan="3"></td>
+        <td><strong><%= (total / spot.reviews.length).toFixed(1) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Reviews Yet</h5>
+<% } %>
+<%- include('../partials/footer') %>

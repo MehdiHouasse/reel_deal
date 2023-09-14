@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+    <h1>Edit The Fishing Spot</h1>
+
+   <form action="/spots/<%= spot._id %>?_method=PUT" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= spot.name %>" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="fishSpecies">Available Fish Species:</label>
+
+
+
+        <button type="submit">Update Spot</button>
+    </form>
+
+    <a href="/">Back to Fishing Spots</a>
+
+<%- include('../partials/footer') %>

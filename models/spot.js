@@ -31,6 +31,9 @@ const spotSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  description: {
+    type: String
+  },
   fishSpecies: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Fish",
