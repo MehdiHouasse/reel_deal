@@ -1,6 +1,8 @@
+const Spot = require("../models/spot")
+
 async function create(req, res) {
   const spot = await Spot.findById(req.params.id);
-
+console.log(spot);
   // Add the user-centric info to req.body
   req.body.user = req.user._id;
   req.body.userName = req.user.name;

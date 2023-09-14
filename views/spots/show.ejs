@@ -20,11 +20,12 @@
 
   <!-- Link to go back to the list of fishing spots -->
     <div class="card-buttons">
-    <button href="/spots" class="card-button">Back to All Fishing Spots</button>
-    <button href="/spots/<%= spot._id %>/edit" class="card-button">Edit</button>
+ <a href= "/spots"><button  class="card-button">Back to All Fishing Spots</button></a>
+ <a href= "/spots/<%= spot._id %>/edit"><button  class="card-button">Edit</button></a>
+
 
    <form action="/spots/<%= spot._id %>?_method=DELETE" method="POST">
-   <button type="submit">Delete</button>
+   <button type="submit" class="card-button">Delete</button>
    </form>
 
   </div>

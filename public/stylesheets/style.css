@@ -52,7 +52,7 @@ nav > a {
 
 nav > a:hover:not(.active) {
   color: white;
-  background-color: #4d7f89;
+  background-color: #707576;
 }
 
 nav > a.active {

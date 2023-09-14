@@ -48,7 +48,7 @@ app.use(methodOverride('_method'));
 
 
 app.use('/', indexRouter);
-app.use('/reviews', reviewsRouter);
+app.use('/', reviewsRouter);
 app.use('/spots', spotsRouter);
 
 

@@ -16,7 +16,9 @@ router.get('/:id', spotsController.showSpotDetails);
 // Route for handling the submission of a new spot
 router.post('/', ensureLoggedIn, spotsController.addSpot);
 
-router.get('/:id/edit', ensureLoggedIn, spotsController.editFishingSpot);
+router.get('/:id/edit', ensureLoggedIn, spotsController.edit);
+
+router.put('/:id', ensureLoggedIn, spotsController.update);
 
 router.delete('/:id', ensureLoggedIn, spotsController.deleteFishingSpot);
 module.exports = router;
