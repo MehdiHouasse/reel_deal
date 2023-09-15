@@ -28,19 +28,18 @@ https://reel-deal-f82984731cf8.herokuapp.com/
 ## Technologies and Tools Used
 
 1. **Frontend Technologies:**
-   - HTML (https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=html5)
-   - CSS (https://img.shields.io/badge/-CSS-05122A?style=flat&logo=css3)
-   - JavaScript (https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)
+![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)
+  ![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=html5)
+  ![CSS3](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=css3)
 
 2. **Backend Technologies:**
-   - Node.js (https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=node.js)
-   - Express.js (https://img.shields.io/badge/-Express-05122A?style=flat&logo=express)
+  ![Node](https://img.shields.io/badge/-Node.js-05122A?style=flat&logo=node.js)
+  ![Express](https://img.shields.io/badge/-Express-05122A?style=flat&logo=express)
 
 
 3. **Database Technologies:**
-   - MongoDB (https://img.shields.io/badge/-MongoDB-05122A?style=flat&logo=mongodb)
-   - Mongoose (for MongoDB) (https://img.shields.io/badge/-Mongoose_ODM-05122A?style=flat&logo=mongodb)
-
+  ![MongoDB](https://img.shields.io/badge/-MongoDB-05122A?style=flat&logo=mongodb)
+  ![Mongoose ODM](https://img.shields.io/badge/-Mongoose_ODM-05122A?style=flat&logo=mongodb)
 4. **User Authentication and Authorization:**
    - [ ] Passport.js
 
@@ -48,11 +47,11 @@ https://reel-deal-f82984731cf8.herokuapp.com/
    - [ ] npm (Node Package Manager)
 
 6. **Version Control:**
-   - Git (https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)
-   - GitHub (https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
+  ![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)
+  ![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
 
 7. **Deployment and Hosting:**
-   - Heroku (https://img.shields.io/badge/-Heroku-05122A?style=flat&logo=heroku)
+   ![Heroku](https://img.shields.io/badge/-Heroku-05122A?style=flat&logo=heroku)
 
 ## ScreenShots
 ![initial state](images/h.png)
