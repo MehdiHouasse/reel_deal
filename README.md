@@ -24,6 +24,7 @@ Welcome to the Fishing Spots project! This is a web application that allows user
 
 https://reel-deal-f82984731cf8.herokuapp.com/
 
+
 ## Technologies and Tools Used
 
 1. **Frontend Technologies:**
