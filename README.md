@@ -21,8 +21,8 @@ Welcome to the Fishing Spots project! This is a web application that allows user
 - And more!
 
 ## Getting Started
-
-https://reel-deal-f82984731cf8.herokuapp.com/
+Trello: https://trello.com/b/HwdDE2WN/project2
+Application link: https://reel-deal-f82984731cf8.herokuapp.com/
 
 
 ## Technologies and Tools Used
