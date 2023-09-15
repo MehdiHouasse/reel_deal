@@ -54,8 +54,8 @@ Welcome to the Fishing Spots project! This is a web application that allows user
    - Heroku (https://img.shields.io/badge/-Heroku-05122A?style=flat&logo=heroku)
 
 ## ScreenShots
-![initial state](imgs/initial.png)
-![first spin](imgs/spin.png)
+![initial state](images/h.png)
+![All spots page](images/spots.png)
 
 ## Web App Features
 

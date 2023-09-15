@@ -16,7 +16,7 @@ body {
 
 body > nav {
   grid-area: nav;
-  background-color: #B8C0C2;
+  background-color: #b3dbc2;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -24,17 +24,24 @@ body > nav {
 }
 
 nav > img {
-  width: 34px;
+  width: 170px;
   object-fit: contain;
   margin-right: auto;
+  border-radius: 25px;
 }
-
+.small-image {
+  width: 170px;
+  object-fit: contain;
+  margin-right: auto;
+  border-radius: 25px;
+  /* Adjust the width as needed */
+}
 body > main {
   grid-area: main;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #E8ECEB;
+  background-color: #ffffff;
   padding: 20px;
   overflow-y: scroll;
 }
@@ -46,13 +53,13 @@ body > main h1:first-child {
 nav > a {
   margin: 20px;
   text-decoration: none;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 15px;
+  border-radius: 25px;
 }
 
 nav > a:hover:not(.active) {
   color: white;
-  background-color: #707576;
+  background-color: #78a288;
 }
 
 nav > a.active {
