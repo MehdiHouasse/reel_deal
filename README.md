@@ -54,8 +54,8 @@ https://reel-deal-f82984731cf8.herokuapp.com/
    ![Heroku](https://img.shields.io/badge/-Heroku-05122A?style=flat&logo=heroku)
 
 ## ScreenShots
-![initial state](images/h.png)
-![All spots page](images/spots.png)
+![initial state](public/images/h.png)
+![All spots page](public/images/spots.png)
 
 ## Web App Features
 
